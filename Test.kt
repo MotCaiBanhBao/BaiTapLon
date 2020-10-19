@@ -8,7 +8,7 @@ import tornadofx.App
 class Test: App(StaffView::class, Style::class){
     override fun start(stage: Stage) {
         with(stage){
-            width = 1200.0
+            width = 1000.0
             height = 600.0
         }
 

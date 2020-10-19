@@ -1,15 +1,8 @@
 package luongvany.k12tt.view.staffview.addstaffview
 
-import javafx.beans.property.SimpleObjectProperty
-import javafx.beans.property.SimpleStringProperty
-import javafx.collections.FXCollections
-import javafx.scene.image.Image
 import luongvany.k12tt.controller.StaffViewController
-import luongvany.k12tt.main
 import luongvany.k12tt.model.Sex
-import luongvany.k12tt.model.Staff
 import tornadofx.*
-import java.time.LocalDate
 
 class AddStaff: View("Thêm nhân viên"){
     private val mainController: StaffViewController by inject()

@@ -1,5 +1,6 @@
 package luongvany.k12tt.util
 
+import luongvany.k12tt.model.StaffEntryTbl
 import org.jetbrains.exposed.sql.SchemaUtils
 import org.jetbrains.exposed.sql.StdOutSqlLogger
 import org.jetbrains.exposed.sql.Transaction
@@ -20,7 +21,7 @@ fun enableConsoleLogger(){
 
 fun createTables(){
     with(newTransaction()){
-        SchemaUtils.create(Student)
+        SchemaUtils.create(StaffEntryTbl)
     }
 }
 

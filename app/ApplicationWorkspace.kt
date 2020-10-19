@@ -13,5 +13,6 @@ class ApplicationWorkspace : Workspace("Application", NavigationMode.Tabs) {
         //dock
 
         tabContainer.tabClosingPolicy = TabPane.TabClosingPolicy.UNAVAILABLE
+        test ne
     }
 }

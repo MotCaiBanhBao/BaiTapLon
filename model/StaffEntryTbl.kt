@@ -4,6 +4,7 @@ import javafx.beans.property.SimpleIntegerProperty
 import javafx.beans.property.SimpleObjectProperty
 import javafx.beans.property.SimpleStringProperty
 import javafx.scene.image.Image
+import luongvany.k12tt.util.convertToSex
 import luongvany.k12tt.util.toJavaLocalDate
 import org.jetbrains.exposed.sql.ResultRow
 import org.jetbrains.exposed.sql.Table
@@ -16,11 +17,11 @@ fun ResultRow.toStaffEntry() = StaffEntry(
         this[StaffEntryTbl.id],
         this[StaffEntryTbl.name],
         this[StaffEntryTbl.homeTown],
-        Sex.valueOf(this[StaffEntryTbl.sex]),
+        this[StaffEntryTbl.sex].convertToSex(),
         this[StaffEntryTbl.birthDay].toJavaLocalDate(),
         this[StaffEntryTbl.departmentId],
         this[StaffEntryTbl.salaryId],
-        Image(this[StaffEntryTbl.img])
+        this[StaffEntryTbl.img]
 )
 
 object StaffEntryTbl: Table(){
@@ -31,12 +32,11 @@ object StaffEntryTbl: Table(){
     val birthDay = date("date")
     val departmentId = integer("departmentID")
     val salaryId = integer("salaryId")
-    val img = varchar("imagine", 30)
-
+    val img = varchar("imagine", 100)
 }
 
 class StaffEntry(id: Int, name: String, homeTown: String, sex: Sex,
-            birthDay: LocalDate, departmentId: Int, salaryId: Int, img: Image){
+            birthDay: LocalDate, departmentId: Int, salaryId: Int, imgUrl: String){
 
     val idProperty = SimpleIntegerProperty(id)
     var id by idProperty
@@ -59,14 +59,8 @@ class StaffEntry(id: Int, name: String, homeTown: String, sex: Sex,
     val salaryIdProperty = SimpleIntegerProperty(salaryId)
     var salaryId by salaryIdProperty
 
-    val imgProperty = SimpleObjectProperty<Image>(img)
+    val imgProperty = SimpleStringProperty(imgUrl)
     var img by imgProperty
-
-    val age: String get() = if (Period.between(birthDay, LocalDate.now()).years == 0) {
-        " " + Period.between(birthDay, LocalDate.now()).months + " tháng"
-    } else{
-        " " + Period.between(birthDay, LocalDate.now()).years + " Tuổi"
-    }
 }
 
 class StaffEntryModel: ItemViewModel<StaffEntry>(){
@@ -78,4 +72,8 @@ class StaffEntryModel: ItemViewModel<StaffEntry>(){
     val departmentId = bind{item?.departmentIdProperty}
     val salaryId = bind{item?.salaryIdProperty}
     val img = bind{item?.imgProperty}
+
+    init{
+        img.value = "person-male.png"
+    }
 }

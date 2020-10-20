@@ -24,7 +24,7 @@ fun createTables(){
         SchemaUtils.create(StaffEntryTbl)
     }
 }
-
+// Môi trường thực hiện các lệnh command sql
 fun <T> execute(command: () -> T): T{
     with(newTransaction()){
         return command().apply {

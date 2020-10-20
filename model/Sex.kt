@@ -4,7 +4,6 @@ enum class Sex(val symbol: Char){
     NU('\u2640'),
     GIOITINHTHUBA('\u2600');
 
-    fun display() = "$symbol ${name.toLowerCase()}"
     override fun toString(): String {
         return "$symbol ${when(name){
             "NAM" -> "Nam"

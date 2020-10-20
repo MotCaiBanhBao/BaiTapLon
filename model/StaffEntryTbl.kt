@@ -22,20 +22,21 @@ fun ResultRow.toStaffEntry() = StaffEntry(
         this[StaffEntryTbl.salaryId],
         Image(this[StaffEntryTbl.img])
 )
+
 object StaffEntryTbl: Table(){
     val id = integer("id").autoIncrement().primaryKey()
     val name = varchar("name", 30)
     val homeTown = varchar("homeTown", 30)
     val sex = varchar("sex", 30)
     val birthDay = date("date")
-    val departmentId = varchar("departmentID", 30)
-    val salaryId = varchar("salaryId", 30)
+    val departmentId = integer("departmentID")
+    val salaryId = integer("salaryId")
     val img = varchar("imagine", 30)
 
 }
 
 class StaffEntry(id: Int, name: String, homeTown: String, sex: Sex,
-            birthDay: LocalDate, departmentId: String, salaryId: String, img: Image){
+            birthDay: LocalDate, departmentId: Int, salaryId: Int, img: Image){
 
     val idProperty = SimpleIntegerProperty(id)
     var id by idProperty
@@ -52,10 +53,10 @@ class StaffEntry(id: Int, name: String, homeTown: String, sex: Sex,
     val birthDayProperty = SimpleObjectProperty<LocalDate>(birthDay)
     var birthDay by birthDayProperty
 
-    val departmentIdProperty = SimpleStringProperty(departmentId)
+    val departmentIdProperty = SimpleIntegerProperty(departmentId)
     var departmentId by departmentIdProperty
 
-    val salaryIdProperty = SimpleStringProperty(salaryId)
+    val salaryIdProperty = SimpleIntegerProperty(salaryId)
     var salaryId by salaryIdProperty
 
     val imgProperty = SimpleObjectProperty<Image>(img)
@@ -76,4 +77,5 @@ class StaffEntryModel: ItemViewModel<StaffEntry>(){
     val birthDay = bind{item?.birthDayProperty}
     val departmentId = bind{item?.departmentIdProperty}
     val salaryId = bind{item?.salaryIdProperty}
+    val img = bind{item?.imgProperty}
 }

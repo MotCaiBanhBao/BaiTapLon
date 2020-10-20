@@ -1,10 +1,12 @@
 package luongvany.k12tt.controller
 
+import javafx.collections.FXCollections
 import javafx.collections.ObservableList
 import javafx.scene.image.Image
 import luongvany.k12tt.model.*
 import luongvany.k12tt.util.execute
 import luongvany.k12tt.util.toDate
+import luongvany.k12tt.view.staffview.stafftableview.RightView
 import org.jetbrains.exposed.sql.deleteWhere
 import org.jetbrains.exposed.sql.insert
 import org.jetbrains.exposed.sql.selectAll
@@ -14,48 +16,43 @@ import java.time.LocalDate
 
 class ItemController: Controller(){
 
-
-
-    private val listOfItems: ObservableList<StaffEntryModel> = execute {
+    val rightView: RightView by inject()
+    val gioiTinh = FXCollections.observableArrayList<Sex>(Sex.NAM, Sex.NU, Sex.GIOITINHTHUBA)
+    var listOfItems: ObservableList<StaffEntryModel> = execute {
         StaffEntryTbl.selectAll().map {
             StaffEntryModel().apply {
                 item = it.toStaffEntry()
             }
         }.asObservable()
     }
-
-    var staffModel = StaffEntryModel()
+    var items: ObservableList<StaffEntryModel> by singleAssign()
 
     init {
-        execute {
-            StaffEntryTbl.deleteWhere {
-                StaffEntryTbl.id eq 1
-            }
-        }
-        add(1, "Lương Văn Ý", "NAM", "Bình Định", LocalDate.of(2000, 10, 26), 1, 1, "person-male.png")
-        listOfItems.forEach{
-            println(it.id.value)
-        }
+        items = listOfItems
     }
 
-    fun add(newId: Int, newName: String, newSex: String, newHomeTown: String, newBirthday: LocalDate,
-            newDepartmentId: Int, newSalaryId: Int, newImgUrl: String): StaffEntry {
+    fun add(addItem: StaffEntry): StaffEntry {
 
         val newEntry = execute{
             StaffEntryTbl.insert {
-                it[id] = newId
-                it[name] = newName
-                it[sex] = newSex
-                it[homeTown] = newHomeTown
-                it[birthDay] = newBirthday.toDate()
-                it[departmentId] = newDepartmentId
-                it[salaryId] = newSalaryId
-                it[img] = newImgUrl
+                it[id] = addItem.id
+                it[name] = addItem.name
+                it[sex] = addItem.sex.toString()
+                it[homeTown] = addItem.homeTown
+                it[birthDay] = addItem.birthDay.toDate()
+                it[departmentId] = addItem.departmentId
+                it[salaryId] = addItem.salaryId
+                it[img] = addItem.img
             }
         }
 
-        return StaffEntry(newEntry[StaffEntryTbl.id], newName,newHomeTown,  Sex.valueOf(newSex),
-                newBirthday, newDepartmentId, newSalaryId, Image(newImgUrl))
+        listOfItems.add(
+                StaffEntryModel().apply {
+                    item = addItem
+                }
+        )
+
+        return addItem
     }
 
     fun update(updateItem: StaffEntryModel): Int{
@@ -64,12 +61,12 @@ class ItemController: Controller(){
                 StaffEntryTbl.id eq(updateItem.id.value.toInt())}){
                 it[id] = updateItem.id.value
                 it[name] = updateItem.name.value
-                it[sex] = updateItem.sex.value.display()
+                it[sex] = updateItem.sex.name
                 it[homeTown] = updateItem.homeTown.value
                 it[birthDay] = updateItem.birthDay.value.toDate()
                 it[departmentId] = updateItem.departmentId.value
                 it[salaryId] = updateItem.salaryId.value
-                it[img] = updateItem.img.value.url
+                it[img] = updateItem.img.value
             }
         }
     }
@@ -80,5 +77,14 @@ class ItemController: Controller(){
                 StaffEntryTbl.id eq (model.id.value.toInt())
             }
         }
+         listOfItems.remove(model)
+    }
+
+    fun changeImg(model: StaffEntryModel){
+        rightView.root.clear()
+        rightView.root.imageview(model.img){
+            fitWidth = 400.0
+        }
+
     }
 }

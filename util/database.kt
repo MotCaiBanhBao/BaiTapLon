@@ -6,11 +6,11 @@ import org.jetbrains.exposed.sql.StdOutSqlLogger
 import org.jetbrains.exposed.sql.Transaction
 import org.jetbrains.exposed.sql.addLogger
 import org.jetbrains.exposed.sql.transactions.TransactionManager
-import org.sqlite.ExtendedCommand
 import java.sql.Connection
 
 private var LOG_TO_CONSOLE: Boolean = false
 
+//Thêm phần hiển thị câu lệnh trên cmd
 fun newTransaction(): Transaction = TransactionManager.currentOrNew(Connection.TRANSACTION_SERIALIZABLE).apply {
     if(LOG_TO_CONSOLE) addLogger(StdOutSqlLogger)
 }

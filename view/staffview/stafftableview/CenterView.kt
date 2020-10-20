@@ -1,25 +1,27 @@
 package luongvany.k12tt.view.staffview.stafftableview
 
-import luongvany.k12tt.controller.StaffViewController
-import luongvany.k12tt.model.Staff
+import luongvany.k12tt.controller.ItemController
+import luongvany.k12tt.model.StaffEntryModel
 import tornadofx.*
 
 class CenterView : View("My View") {
-    val rightView: RightView by inject()
-    private val mainController: StaffViewController by inject()
+    val model = StaffEntryModel()
+    val itemController: ItemController by inject()
+    var mTableView: TableViewEditModel<StaffEntryModel> by singleAssign()
 
-    override val root = tableview(mainController.staffDatas){
+    override val root = tableview(itemController.items){
 
-        isEditable = true
-        column("Id", Staff::idProperty).makeEditable()
-        column("Name", Staff::nameProperty).makeEditable()
-        column("Home Town", Staff::homeTownProperty).makeEditable()
-        column("Sex", Staff::sexProperty)
-        readonlyColumn("Age", Staff::age)
-        column("Department", Staff::departmentIdProperty).makeEditable()
-        column("Salary id", Staff::salaryIdProperty).makeEditable()
+        mTableView = editModel
+
+        column("Id", StaffEntryModel::id)
+        column("Name", StaffEntryModel::name)
+        column("Home Town", StaffEntryModel::homeTown)
+        column("Sex", StaffEntryModel::sex)
+        column("Birthday", StaffEntryModel::birthDay)
+        column("Department", StaffEntryModel::departmentId)
+        column("Salary id", StaffEntryModel::salaryId)
         onSelectionChange {
-            mainController.changeImg(mainController.findIndex())
+            mTableView.tableView.selectedItem?.let { it1 -> itemController.changeImg(it1) }
         }
     }
 }

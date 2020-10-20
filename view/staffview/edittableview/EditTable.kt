@@ -1,39 +1,40 @@
 package luongvany.k12tt.view.staffview.edittableview
 
-import luongvany.k12tt.controller.StaffViewController
 import luongvany.k12tt.model.Sex
+import luongvany.k12tt.model.StaffEntryModel
 import tornadofx.*
 
 class EditTable: View("My View") {
-    private val mainController: StaffViewController by inject()
+    val model = StaffEntryModel()
+
 
     override val root = form {
         fieldset {
             field("Mã nhân viên") {
-                textfield(mainController.staffDatas[mainController.index].idProperty){}
+                textfield(model.id){}
             }
             field("Tên nhân viên") {
-                textfield(mainController.staffDatas[mainController.index].nameProperty){}
+                textfield(model.name){}
             }
             field("Quê quán") {
-                textfield(mainController.staffDatas[mainController.index].homeTownProperty){}
+                textfield(model.homeTown){}
             }
             field("Giới tính") {
-                combobox<Sex>(mainController.staffDatas[mainController.index].sexProperty){
-                    items = mainController.gioiTinh
+                combobox<Sex>(model.sex){
+
                 }
             }
             field("Ngày sinh") {
-                datepicker(mainController.staffDatas[mainController.index].birthDayProperty){}
+                datepicker(model.birthDay){}
             }
             field("Mã phòng ban") {
-                combobox<String>(mainController.departmentId){}
+                combobox<Number>(model.departmentId){}
             }
             field("Mã Lương") {
-                textfield(mainController.staffDatas[mainController.index].salaryIdProperty){}
+                textfield(model.salaryId){}
             }
             field("Hình Ảnh") {
-                textfield(mainController.staffDatas[mainController.index].imgProperty.value.url){}
+                textfield(model.img){}
             }
             button("Save"){
                 action{

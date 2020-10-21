@@ -4,6 +4,7 @@ import javafx.scene.control.TabPane
 import luongvany.k12tt.controller.ItemController
 import luongvany.k12tt.util.createTables
 import luongvany.k12tt.util.enableConsoleLogger
+import luongvany.k12tt.view.staffview.addstaffview.AddStaff
 import luongvany.k12tt.view.staffview.stafftableview.StaffView
 import org.jetbrains.exposed.sql.Database
 import tornadofx.*
@@ -15,10 +16,8 @@ class ApplicationWorkspace : Workspace("Application", NavigationMode.Tabs) {
         enableConsoleLogger()
         Database.connect("jdbc:sqlite:./app-test.db", "org.sqlite.JDBC")
         createTables()
-
-        ItemController()
         //Controller
-
+        ItemController()
         //dock our view
         dock<StaffView>()
 

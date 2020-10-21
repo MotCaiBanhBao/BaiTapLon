@@ -5,7 +5,6 @@ import luongvany.k12tt.model.StaffEntryModel
 import tornadofx.*
 
 class CenterView : View("My View") {
-    val model = StaffEntryModel()
     val itemController: ItemController by inject()
     var mTableView: TableViewEditModel<StaffEntryModel> by singleAssign()
 

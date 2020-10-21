@@ -11,7 +11,7 @@ import tornadofx.*
 import java.time.LocalDate
 
 class AddStaff: View("Thêm nhân viên"){
-    val model = StaffEntryModel()
+    private val model = StaffEntryModel()
     private val itemController: ItemController by inject()
 
     override val root = form {

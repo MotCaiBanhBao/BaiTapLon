@@ -3,36 +3,37 @@ package luongvany.k12tt.model
 import javafx.beans.property.SimpleIntegerProperty
 import javafx.beans.property.SimpleObjectProperty
 import javafx.beans.property.SimpleStringProperty
-import javafx.scene.image.Image
+import luongvany.k12tt.model.DepartmentEntryTbl.references
 import luongvany.k12tt.util.convertToSex
 import luongvany.k12tt.util.toJavaLocalDate
 import org.jetbrains.exposed.sql.ResultRow
 import org.jetbrains.exposed.sql.Table
 import tornadofx.*
 import java.time.LocalDate
-import java.time.Period
 
-
-fun ResultRow.toStaffEntry() = StaffEntry(
-        this[StaffEntryTbl.id],
-        this[StaffEntryTbl.name],
-        this[StaffEntryTbl.homeTown],
-        this[StaffEntryTbl.sex].convertToSex(),
-        this[StaffEntryTbl.birthDay].toJavaLocalDate(),
-        this[StaffEntryTbl.departmentId],
-        this[StaffEntryTbl.salaryId],
-        this[StaffEntryTbl.img]
-)
+fun ResultRow.toStaffEntry() = this[StaffEntryTbl.departmentId]?.let {
+    StaffEntry(
+            this[StaffEntryTbl.id],
+            this[StaffEntryTbl.name],
+            this[StaffEntryTbl.homeTown],
+            this[StaffEntryTbl.sex].convertToSex(),
+            this[StaffEntryTbl.birthDay].toJavaLocalDate(),
+            it,
+            this[StaffEntryTbl.salaryId],
+            this[StaffEntryTbl.img]
+    )
+}
 
 object StaffEntryTbl: Table(){
-    val id = integer("id").autoIncrement().primaryKey()
+    val id = integer("id").primaryKey()
     val name = varchar("name", 30)
     val homeTown = varchar("homeTown", 30)
     val sex = varchar("sex", 30)
     val birthDay = date("date")
-    val departmentId = integer("departmentID")
-    val salaryId = integer("salaryId")
+    val departmentId = integer("departmentID").references(DepartmentEntryTbl.departmentId).nullable()
+    val salaryId = integer("salaryId").references(LuongEntryTbl.maLuong)
     val img = varchar("imagine", 100)
+
 }
 
 class StaffEntry(id: Int, name: String, homeTown: String, sex: Sex,
@@ -64,6 +65,7 @@ class StaffEntry(id: Int, name: String, homeTown: String, sex: Sex,
 }
 
 class StaffEntryModel: ItemViewModel<StaffEntry>(){
+
     val id = bind{item?.idProperty}
     val name = bind{item?.nameProperty}
     val homeTown = bind{item?.homeTownProperty}

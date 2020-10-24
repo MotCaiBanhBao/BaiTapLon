@@ -2,7 +2,6 @@ package luongvany.k12tt.controller
 
 import javafx.collections.FXCollections
 import javafx.collections.ObservableList
-import javafx.scene.image.Image
 import luongvany.k12tt.model.*
 import luongvany.k12tt.util.execute
 import luongvany.k12tt.util.toDate
@@ -12,11 +11,10 @@ import org.jetbrains.exposed.sql.insert
 import org.jetbrains.exposed.sql.selectAll
 import org.jetbrains.exposed.sql.update
 import tornadofx.*
-import java.time.LocalDate
 
 class ItemController: Controller(){
 
-    val rightView: RightView by inject()
+    private val rightView: RightView by inject()
     val gioiTinh = FXCollections.observableArrayList<Sex>(Sex.NAM, Sex.NU, Sex.GIOITINHTHUBA)
     var listOfItems: ObservableList<StaffEntryModel> = execute {
         StaffEntryTbl.selectAll().map {
@@ -29,6 +27,7 @@ class ItemController: Controller(){
 
     init {
         items = listOfItems
+
     }
 
     fun add(addItem: StaffEntry): StaffEntry {

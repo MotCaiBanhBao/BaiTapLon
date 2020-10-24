@@ -1,5 +1,6 @@
 package luongvany.k12tt.util
 
+import luongvany.k12tt.model.DepartmentEntryTbl
 import luongvany.k12tt.model.StaffEntryTbl
 import org.jetbrains.exposed.sql.SchemaUtils
 import org.jetbrains.exposed.sql.StdOutSqlLogger
@@ -21,7 +22,7 @@ fun enableConsoleLogger(){
 
 fun createTables(){
     with(newTransaction()){
-        SchemaUtils.create(StaffEntryTbl)
+        SchemaUtils.create(StaffEntryTbl, DepartmentEntryTbl)
     }
 }
 // Môi trường thực hiện các lệnh command sql

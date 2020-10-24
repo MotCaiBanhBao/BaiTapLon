@@ -1,7 +1,6 @@
 package luongvany.k12tt.util
 
-import luongvany.k12tt.model.DepartmentEntryTbl
-import luongvany.k12tt.model.StaffEntryTbl
+import luongvany.k12tt.model.*
 import org.jetbrains.exposed.sql.SchemaUtils
 import org.jetbrains.exposed.sql.StdOutSqlLogger
 import org.jetbrains.exposed.sql.Transaction
@@ -22,12 +21,18 @@ fun enableConsoleLogger(){
 
 fun createTables(){
     with(newTransaction()){
-        SchemaUtils.create(StaffEntryTbl, DepartmentEntryTbl)
+        SchemaUtils.create(StaffEntryTbl, DepartmentEntryTbl, ChucVuEntryTbl,
+                DamNhiemEntryTbl, DieuKhoanEntryTbl, DieuKhoanLaoDongEntryTbl,
+                DoiTacEntryTbl, GioiThieuEntryTbl, HangHoaEntryTbl,
+                HDDD_DKEntryTbl, HoaDonEntryTbl, HoiDongQuanTriEntryTbl,
+                HopDongEntryTbl, KhachHangEntryTbl, LuongEntryTbl, NhapHangEntryTbl,
+                PhuCapEntryTbl, ThanhVienHDQTEntryTbl)
     }
 }
 // Môi trường thực hiện các lệnh command sql
 fun <T> execute(command: () -> T): T{
     with(newTransaction()){
+
         return command().apply {
             commit()
             close()

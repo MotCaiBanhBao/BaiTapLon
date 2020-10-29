@@ -1,14 +1,10 @@
 package luongvany.k12tt.view.staffview.addstaffview
 
-import com.sun.javafx.css.StyleCache
-import javafx.scene.input.KeyCode
 import luongvany.k12tt.controller.ItemController
 import luongvany.k12tt.model.Sex
-import luongvany.k12tt.model.StaffEntryModel
+import luongvany.k12tt.model.datamodel.StaffEntryModel
 import luongvany.k12tt.util.toStaffEntry
-import luongvany.k12tt.view.staffview.stafftableview.CenterView
 import tornadofx.*
-import java.time.LocalDate
 
 class AddStaff: View("Thêm nhân viên"){
     private val model = StaffEntryModel()
@@ -41,7 +37,6 @@ class AddStaff: View("Thêm nhân viên"){
                         }
                     }
                 }
-
             }
             field("Quê quán") {
                 textfield(model.homeTown){

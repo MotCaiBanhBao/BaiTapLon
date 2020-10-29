@@ -5,14 +5,23 @@ import tornadofx.*
 
 class Style: Stylesheet(){
     companion object{
-        val hallo: CssRule by cssclass()
+        val login by cssclass()
+        val loginWidth = 300.px
     }
 
     init{
-        label and hallo{
-            padding = box(10.px)
-            fontSize = 110.px
+        form and login{
+            padding = box(25.px)
+            fontSize = 20.px
             fontWeight = FontWeight.BOLD
+            prefWidth = loginWidth
+            backgroundColor += c("#c4c3f4")
+            button{
+                prefWidth = loginWidth
+            }
+            progressIndicator{
+                prefWidth = 16.px
+            }
         }
     }
 }

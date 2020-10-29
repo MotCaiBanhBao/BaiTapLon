@@ -1,4 +1,4 @@
-package luongvany.k12tt.model
+package luongvany.k12tt.model.datamodel
 
 import org.jetbrains.exposed.sql.Table
 

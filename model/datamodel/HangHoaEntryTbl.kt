@@ -1,8 +1,9 @@
-package luongvany.k12tt.model
+package luongvany.k12tt.model.datamodel
 
 import javafx.beans.property.SimpleIntegerProperty
 import javafx.beans.property.SimpleObjectProperty
 import javafx.beans.property.SimpleStringProperty
+import luongvany.k12tt.model.Sex
 import org.jetbrains.exposed.sql.Table
 import tornadofx.*
 import java.time.LocalDate

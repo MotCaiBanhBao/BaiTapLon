@@ -1,6 +1,5 @@
 package luongvany.k12tt.view.staffview.stafftableview
 
-import luongvany.k12tt.model.StaffEntryModel
 import tornadofx.*
 
 class StaffView: View("Bảng nhân viên"){

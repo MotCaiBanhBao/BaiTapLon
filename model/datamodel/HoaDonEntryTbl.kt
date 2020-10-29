@@ -1,4 +1,4 @@
-package luongvany.k12tt.model
+package luongvany.k12tt.model.datamodel
 
 import javafx.beans.property.SimpleIntegerProperty
 import javafx.beans.property.SimpleObjectProperty

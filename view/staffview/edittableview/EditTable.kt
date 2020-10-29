@@ -1,7 +1,7 @@
 package luongvany.k12tt.view.staffview.edittableview
 
 import luongvany.k12tt.model.Sex
-import luongvany.k12tt.model.StaffEntryModel
+import luongvany.k12tt.model.datamodel.StaffEntryModel
 import tornadofx.*
 
 class EditTable: View("My View") {

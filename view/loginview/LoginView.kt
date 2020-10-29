@@ -1,26 +1,31 @@
 package luongvany.k12tt.view.loginview
 
-import javafx.geometry.Pos
-import luongvany.k12tt.model.Sex
-import luongvany.k12tt.util.toStaffEntry
+import javafx.geometry.Orientation
+import javafx.scene.Scene
+import javafx.scene.control.ProgressIndicator
+import luongvany.k12tt.controller.LoginController
+import luongvany.k12tt.style.Style.Companion.login
 import tornadofx.*
-import tornadofx.Form
 
-class LoginView : Fragment("My View") {
+class LoginView : View("My View") {
+
+    private val controller: LoginController by inject()
     override val root = form {
+        addClass(login)
         fieldset {
+            labelPosition = Orientation.VERTICAL
             field("Tên đăng nhập") {
-                textfield(){
-                }
+                textfield(controller.nameUser)
             }
             field("Mật khẩu") {
-                textfield(){
-
-                }
-
+                passwordfield(controller.password)
             }
-
+        }
+        button("Login"){
+            action{
+                graphic = ProgressIndicator()
+                controller.login()
+            }
         }
     }
-
 }

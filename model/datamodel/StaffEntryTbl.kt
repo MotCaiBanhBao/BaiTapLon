@@ -1,9 +1,9 @@
-package luongvany.k12tt.model
+package luongvany.k12tt.model.datamodel
 
 import javafx.beans.property.SimpleIntegerProperty
 import javafx.beans.property.SimpleObjectProperty
 import javafx.beans.property.SimpleStringProperty
-import luongvany.k12tt.model.DepartmentEntryTbl.references
+import luongvany.k12tt.model.Sex
 import luongvany.k12tt.util.convertToSex
 import luongvany.k12tt.util.toJavaLocalDate
 import org.jetbrains.exposed.sql.ResultRow
@@ -37,7 +37,7 @@ object StaffEntryTbl: Table(){
 }
 
 class StaffEntry(id: Int, name: String, homeTown: String, sex: Sex,
-            birthDay: LocalDate, departmentId: Int, salaryId: Int, imgUrl: String){
+                 birthDay: LocalDate, departmentId: Int, salaryId: Int, imgUrl: String){
 
     val idProperty = SimpleIntegerProperty(id)
     var id by idProperty

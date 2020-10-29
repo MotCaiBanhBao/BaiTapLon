@@ -1,8 +1,6 @@
-package luongvany.k12tt.model
+package luongvany.k12tt.model.datamodel
 
 import org.jetbrains.exposed.sql.Table
-import org.jetbrains.exposed.*
-import tornadofx.*
 
 object HDLD_DKEntryTbl: Table(){
     val maHopDong = integer("Mã hợp đồng").primaryKey().references(HopDongLaoDongEntryTbl.maHopDong)

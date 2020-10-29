@@ -1,7 +1,7 @@
 package luongvany.k12tt.view.staffview.stafftableview
 
 import luongvany.k12tt.controller.ItemController
-import luongvany.k12tt.model.StaffEntryModel
+import luongvany.k12tt.model.datamodel.StaffEntryModel
 import tornadofx.*
 
 class CenterView : View("My View") {

@@ -3,6 +3,10 @@ package luongvany.k12tt.controller
 import javafx.collections.FXCollections
 import javafx.collections.ObservableList
 import luongvany.k12tt.model.*
+import luongvany.k12tt.model.datamodel.StaffEntry
+import luongvany.k12tt.model.datamodel.StaffEntryModel
+import luongvany.k12tt.model.datamodel.StaffEntryTbl
+import luongvany.k12tt.model.datamodel.toStaffEntry
 import luongvany.k12tt.util.execute
 import luongvany.k12tt.util.toDate
 import luongvany.k12tt.view.staffview.stafftableview.RightView
@@ -23,6 +27,7 @@ class ItemController: Controller(){
             }
         }.asObservable()
     }
+
     var items: ObservableList<StaffEntryModel> by singleAssign()
 
     init {

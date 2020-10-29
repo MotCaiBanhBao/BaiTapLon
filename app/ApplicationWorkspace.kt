@@ -11,27 +11,22 @@ import org.jetbrains.exposed.sql.transactions.TransactionManager
 import tornadofx.*
 
 class ApplicationWorkspace : Workspace("Application", NavigationMode.Tabs) {
-
+    override fun onDock() {
+        currentWindow?.width = 1200.0
+        currentWindow?.height = 600.0
+        currentWindow?.centerOnScreen()
+    }
     init {
-
         //Db
         enableConsoleLogger()
-        val a = Database.connect("jdbc:mysql://localhost:3306/test", driver = "com.mysql.jdbc.Driver",
-            user = "root", password = "Hung_Huong_121")
-
-        createTables()
-
-        TransactionManager.current().exec("create user 'testacc'@'localhost' IDENTIFIED BY 'Pass_Word_121';\n")
-        TransactionManager.closeAndUnregister(a)
         Database.connect("jdbc:mysql://localhost:3306/test", driver = "com.mysql.jdbc.Driver",
-                user = "testacc", password = "Pass_Word_121")
-        createTables()
+                user = "admin", password = "Admin_Password_121")
         //Controller
         ItemController()
         //dock our view
         dock<StaffView>()
 
         tabContainer.tabClosingPolicy = TabPane.TabClosingPolicy.UNAVAILABLE
-        find(LoginView::class).openModal()
+
     }
 }

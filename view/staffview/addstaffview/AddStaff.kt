@@ -1,5 +1,7 @@
 package luongvany.k12tt.view.staffview.addstaffview
 
+import javafx.beans.property.SimpleStringProperty
+import luongvany.k12tt.controller.DepartmentController
 import luongvany.k12tt.controller.StaffController
 import luongvany.k12tt.model.Sex
 import luongvany.k12tt.model.datamodel.StaffEntryModel
@@ -9,6 +11,8 @@ import tornadofx.*
 class AddStaff: View("Thêm nhân viên"){
     private val model = StaffEntryModel()
     private val itemController: StaffController by inject()
+    private val departmentController: DepartmentController by inject()
+    private var name = SimpleStringProperty(departmentController.listName[0])
 
     override val root = form {
         fieldset {
@@ -67,7 +71,9 @@ class AddStaff: View("Thêm nhân viên"){
                 }
             }
             field("Mã phòng ban") {
-                combobox<Number>(model.departmentId){}
+                combobox(name){
+                    items = departmentController.listName
+                }
             }
             field("Mã Lương") {
                 textfield(model.salaryId){}

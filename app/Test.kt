@@ -6,7 +6,7 @@ import luongvany.k12tt.view.homeview.HomeView
 import luongvany.k12tt.view.loginview.LoginView
 import tornadofx.App
 
-class Test: App(HomeView::class, Style::class){
+class Test: App(LoginView::class, Style::class){
     override fun start(stage: Stage) {
         with(stage){
             width = 300.0

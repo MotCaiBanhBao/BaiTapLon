@@ -16,7 +16,7 @@ import org.jetbrains.exposed.sql.selectAll
 import org.jetbrains.exposed.sql.update
 import tornadofx.*
 
-class ItemController: Controller(){
+class StaffController: Controller(){
 
     private val rightView: RightView by inject()
     val gioiTinh = FXCollections.observableArrayList<Sex>(Sex.NAM, Sex.NU, Sex.GIOITINHTHUBA)
@@ -32,7 +32,6 @@ class ItemController: Controller(){
 
     init {
         items = listOfItems
-
     }
 
     fun add(addItem: StaffEntry): StaffEntry {

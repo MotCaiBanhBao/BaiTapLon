@@ -1,13 +1,10 @@
 package luongvany.k12tt.app
 
 import javafx.scene.control.TabPane
-import luongvany.k12tt.controller.ItemController
-import luongvany.k12tt.util.createTables
+import luongvany.k12tt.controller.StaffController
 import luongvany.k12tt.util.enableConsoleLogger
-import luongvany.k12tt.view.loginview.LoginView
 import luongvany.k12tt.view.staffview.stafftableview.StaffView
 import org.jetbrains.exposed.sql.Database
-import org.jetbrains.exposed.sql.transactions.TransactionManager
 import tornadofx.*
 
 class ApplicationWorkspace : Workspace("Application", NavigationMode.Tabs) {
@@ -22,7 +19,7 @@ class ApplicationWorkspace : Workspace("Application", NavigationMode.Tabs) {
         Database.connect("jdbc:mysql://localhost:3306/test", driver = "com.mysql.jdbc.Driver",
                 user = "admin", password = "Admin_Password_121")
         //Controller
-        ItemController()
+        StaffController()
         //dock our view
         dock<StaffView>()
 

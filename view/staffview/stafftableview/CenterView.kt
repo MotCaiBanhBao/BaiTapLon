@@ -1,11 +1,11 @@
 package luongvany.k12tt.view.staffview.stafftableview
 
-import luongvany.k12tt.controller.ItemController
+import luongvany.k12tt.controller.StaffController
 import luongvany.k12tt.model.datamodel.StaffEntryModel
 import tornadofx.*
 
 class CenterView : View("My View") {
-    val itemController: ItemController by inject()
+    val itemController: StaffController by inject()
     var mTableView: TableViewEditModel<StaffEntryModel> by singleAssign()
 
     override val root = tableview(itemController.items){

@@ -1,6 +1,6 @@
 package luongvany.k12tt.view.staffview.addstaffview
 
-import luongvany.k12tt.controller.ItemController
+import luongvany.k12tt.controller.StaffController
 import luongvany.k12tt.model.Sex
 import luongvany.k12tt.model.datamodel.StaffEntryModel
 import luongvany.k12tt.util.toStaffEntry
@@ -8,7 +8,7 @@ import tornadofx.*
 
 class AddStaff: View("Thêm nhân viên"){
     private val model = StaffEntryModel()
-    private val itemController: ItemController by inject()
+    private val itemController: StaffController by inject()
 
     override val root = form {
         fieldset {

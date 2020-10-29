@@ -6,3 +6,4 @@ object ChucVuEntryTbl: Table(){
     val maChucVu = integer("Mã chức vụ").primaryKey()
     val tenChucVu = varchar("Tên chức vụ", 100)
 }
+

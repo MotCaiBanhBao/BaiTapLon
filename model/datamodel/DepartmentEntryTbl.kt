@@ -6,19 +6,21 @@ import tornadofx.*
 import org.jetbrains.exposed.sql.*
 
 fun ResultRow.toDepartmentEntry() = this[DepartmentEntryTbl.managerId]?.let {
-    DepartmentEntry(
-    this[DepartmentEntryTbl.departmentId],
-    this[DepartmentEntryTbl.departmentName],
-        it,
-    this[DepartmentEntryTbl.directorateId]
-    )
+    this[DepartmentEntryTbl.directorateId]?.let { it1 ->
+        DepartmentEntry(
+                this[DepartmentEntryTbl.departmentId],
+                this[DepartmentEntryTbl.departmentName],
+                it,
+                it1
+        )
+    }
 }
 
 object DepartmentEntryTbl: Table(){
     val departmentId = integer("id").autoIncrement().primaryKey()
     val departmentName = varchar("name", 30)
     val managerId = integer("manager id").references(StaffEntryTbl.id).nullable()
-    val directorateId = integer("Mã hội đồng quản trị").references(HoiDongQuanTriEntryTbl.maHoiDongQuanTri)
+    val directorateId = integer("Mã hội đồng quản trị").references(HoiDongQuanTriEntryTbl.maHoiDongQuanTri).nullable()
 
 }
 

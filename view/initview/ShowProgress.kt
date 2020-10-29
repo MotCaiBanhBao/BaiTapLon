@@ -3,6 +3,7 @@ package luongvany.k12tt.view.initview
 import javafx.application.Platform
 import luongvany.k12tt.app.ApplicationWorkspace
 import luongvany.k12tt.controller.LoginController
+import luongvany.k12tt.controller.MainController
 import luongvany.k12tt.model.datamodel.*
 import luongvany.k12tt.util.enableConsoleLogger
 import luongvany.k12tt.util.newTransaction
@@ -13,6 +14,7 @@ import kotlin.concurrent.thread
 
 class ShowProgress : View("Init application") {
     private val controller: LoginController by inject()
+    private val mainController: MainController by inject()
     override val root = vbox {
         enableConsoleLogger()
 
@@ -21,13 +23,10 @@ class ShowProgress : View("Init application") {
                 with(newTransaction()) {
                     exec("create database test;")
                     exec("use test;")
+                    mainController.listOfObject.forEach{
+                        SchemaUtils.create(it)
+                    }
 
-                    SchemaUtils.create(StaffEntryTbl, DepartmentEntryTbl, ChucVuEntryTbl,
-                            DamNhiemEntryTbl, DieuKhoanEntryTbl, DieuKhoanLaoDongEntryTbl,
-                            DoiTacEntryTbl, GioiThieuEntryTbl, HangHoaEntryTbl,
-                            HDDD_DKEntryTbl, HoaDonEntryTbl, HoiDongQuanTriEntryTbl,
-                            HopDongEntryTbl, KhachHangEntryTbl, LuongEntryTbl, NhapHangEntryTbl,
-                            PhuCapEntryTbl, ThanhVienHDQTEntryTbl)
                 }
                 Thread.currentThread().interrupt()
                 Platform.runLater{

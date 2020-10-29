@@ -38,7 +38,6 @@ object StaffEntryTbl: Table(){
 
 class StaffEntry(id: Int, name: String, homeTown: String, sex: Sex,
                  birthDay: LocalDate, departmentId: Int, salaryId: Int, imgUrl: String){
-
     val idProperty = SimpleIntegerProperty(id)
     var id by idProperty
 

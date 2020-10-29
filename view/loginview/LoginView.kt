@@ -4,6 +4,7 @@ import javafx.geometry.Orientation
 import javafx.scene.Scene
 import javafx.scene.control.ProgressIndicator
 import luongvany.k12tt.controller.LoginController
+import luongvany.k12tt.model.User
 import luongvany.k12tt.style.Style.Companion.login
 import tornadofx.*
 
@@ -15,10 +16,10 @@ class LoginView : View("My View") {
         fieldset {
             labelPosition = Orientation.VERTICAL
             field("Tên đăng nhập") {
-                textfield(controller.nameUser)
+                textfield(User.userName)
             }
             field("Mật khẩu") {
-                passwordfield(controller.password)
+                passwordfield(User.password)
             }
         }
         button("Login"){

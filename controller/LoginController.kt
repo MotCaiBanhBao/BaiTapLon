@@ -1,7 +1,7 @@
 package luongvany.k12tt.controller
 
-import javafx.beans.property.SimpleStringProperty
 import luongvany.k12tt.app.ApplicationWorkspace
+import luongvany.k12tt.model.User
 import luongvany.k12tt.util.*
 import luongvany.k12tt.view.initview.ShowProgress
 import luongvany.k12tt.view.loginview.LoginView
@@ -10,14 +10,12 @@ import org.jetbrains.exposed.sql.transactions.TransactionManager
 import tornadofx.*
 
 class LoginController : Controller(){
-    val nameUser = SimpleStringProperty()
-    val password = SimpleStringProperty()
 
     val loginView: LoginView by inject()
     var connect: Database? = null
     fun login(){
         connect = Database.connect("jdbc:mysql://localhost:3306/", driver = "com.mysql.jdbc.Driver",
-                user = nameUser.value, password = password.value)
+                user = User.userName.value, password = User.password.value)
 
         if (isConnected()){
             if(!isInit()){
@@ -27,7 +25,9 @@ class LoginController : Controller(){
                 find(ShowProgress::class).openWindow()
             }
             else{
+                TransactionManager.closeAndUnregister(connect!!)
                 information("Chào mừng đã trở lại chương trình")
+                loginView.close()
                 find(ApplicationWorkspace::class).openModal()
             }
         }

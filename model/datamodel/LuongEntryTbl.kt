@@ -8,3 +8,4 @@ object LuongEntryTbl : Table(){
     val luongCoBan = integer("Lương cơ bản")
     val heSoLuong = varchar("Hệ số lương", 50)
 }
+

@@ -40,10 +40,11 @@ class DepartmentEntry(departmentId: Int, departmentName: String, managerId: Int,
 
 }
 
-class DepartmentEntryModel: ItemViewModel<DepartmentEntry>(){
-    val id = bind{item?.idProperty}
-    val name = bind{item?.departmentNameProperty}
-    val managerId = bind{item?.managerIdProperty}
-    val directorateId = bind{item?.departmentNameProperty}
-
+class DepartmentEntryModel : ItemViewModel<DepartmentEntry>() {
+    val id = bind(DepartmentEntry::idProperty)
+    val departmentName = bind(DepartmentEntry::departmentNameProperty)
+    val managerId = bind(DepartmentEntry::managerIdProperty)
+    val directorateId = bind(DepartmentEntry::directorateIdProperty)
 }
+
+

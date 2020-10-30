@@ -5,7 +5,7 @@ import luongvany.k12tt.model.datamodel.StaffEntryModel
 import tornadofx.*
 
 class CenterView : View("My View") {
-    val itemController: StaffController by inject()
+    private val itemController: StaffController by inject()
     var mTableView: TableViewEditModel<StaffEntryModel> by singleAssign()
 
     override val root = tableview(itemController.items){

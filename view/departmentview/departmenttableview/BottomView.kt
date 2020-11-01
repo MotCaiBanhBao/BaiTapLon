@@ -1,21 +1,44 @@
 package luongvany.k12tt.view.departmentview.departmenttableview
 
-import javafx.scene.Parent
-import luongvany.k12tt.controller.StaffController
-import luongvany.k12tt.model.datamodel.DepartmentEntryModel
-import luongvany.k12tt.view.departmentview.FormView
+import luongvany.k12tt.controller.DepartmentController
+import luongvany.k12tt.view.departmentview.editview.EditView
+import luongvany.k12tt.view.departmentview.adddepartment.AddDepartment
 import tornadofx.*
 
 class BottomView: View(){
-    private val model = DepartmentEntryModel()
-    private val formView = FormView(model)
+    private val department: CenterView by inject()
+    private val addView: AddDepartment by inject()
+    private val editView: EditView by inject()
+    private val controller: DepartmentController by inject()
+    private var selectedItem = department.selectedDepartment.tableView.selectedItem
 
     override val root = hbox {
         button {
             text = "Add"
             shortcut("ctrl+n")
             action {
-                formView.openModal(owner = null)
+                addView.openModal(owner = null)
+            }
+        }
+        button{
+            action {
+            selectedItem = department.selectedDepartment.tableView.selectedItem
+            selectedItem?.let{
+                controller.delete(it)
+            }
+        }
+            text = "Delete"
+        }
+        button{
+            text = "Edit"
+            action{
+                selectedItem = department.selectedDepartment.tableView.selectedItem
+                if(selectedItem == null){
+                    warning("Lỗi", content = "Làm ơn hãy chọn đối tượng trước khi chỉnh sửa")
+                }
+                selectedItem?.let{
+                    editView.openModal(owner = null)
+                }
             }
         }
     }

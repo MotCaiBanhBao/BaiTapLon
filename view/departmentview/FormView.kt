@@ -4,11 +4,13 @@ import javafx.beans.property.SimpleStringProperty
 import luongvany.k12tt.controller.DepartmentController
 import luongvany.k12tt.controller.StaffController
 import luongvany.k12tt.model.datamodel.DepartmentEntryModel
+import luongvany.k12tt.view.staffview.addstaffview.AddStaff
 import tornadofx.*
 
 class FormView(var model: DepartmentEntryModel = DepartmentEntryModel()): View() {
     private val itemController: DepartmentController by inject()
     private val staffController: StaffController by inject()
+    private val addStaff: AddStaff by inject()
     var name = SimpleStringProperty(staffController.listName[0])
     override val root = form {
         fieldset {
@@ -53,6 +55,11 @@ class FormView(var model: DepartmentEntryModel = DepartmentEntryModel()): View()
             }
             field("Người đứng đầu") {
                 combobox<String>(name) {
+                    staffController.listName.add("+Add new department")
+                    name.onChange{
+                        if(it == "+Add new department")
+                            addStaff.openWindow()
+                    }
                     items = staffController.listName
                 }
             }

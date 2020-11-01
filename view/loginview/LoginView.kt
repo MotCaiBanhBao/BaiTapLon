@@ -11,6 +11,12 @@ import tornadofx.*
 class LoginView : View("My View") {
 
     private val controller: LoginController by inject()
+
+    override fun onDock() {
+        currentWindow?.width = 300.0
+        currentWindow?.height = 300.0
+    }
+
     override val root = form {
         addClass(login)
         fieldset {

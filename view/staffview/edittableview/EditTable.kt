@@ -1,5 +1,6 @@
 package luongvany.k12tt.view.staffview.edittableview
 
+import luongvany.k12tt.controller.MainController
 import luongvany.k12tt.controller.StaffController
 import luongvany.k12tt.util.coppy
 import luongvany.k12tt.util.toStaffEntry
@@ -13,11 +14,12 @@ class EditTable: View("My View") {
     private val selected =  staffView.mTableView.tableView.selectedItem!!.coppy()
     private val index =  staffView.mTableView.tableView.selectedItem!!
     private val formView = Form(selected)
+    private val mainController: MainController by inject()
     override val root = borderpane {
         center = formView.root
         bottom = button("Save") {
             action {
-                println(selected.id)
+                selected.departmentId.value = mainController.convertToId(formView.name)
                 controller.edit(content = selected.toStaffEntry(), indexItem = index!!)
             }
         }

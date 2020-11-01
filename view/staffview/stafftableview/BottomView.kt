@@ -37,7 +37,7 @@ class BottomView : View("My View") {
                     warning("Lỗi", content = "Làm ơn hãy chọn đối tượng trước khi chỉnh sửa")
                 }
                 selectedItem?.let{
-                        editView.openModal(owner = null)
+                    editView.openModal(owner = null)
                 }
             }
 

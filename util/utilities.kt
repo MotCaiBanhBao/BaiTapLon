@@ -1,5 +1,6 @@
 package luongvany.k12tt.util
 
+import javafx.collections.ObservableList
 import luongvany.k12tt.model.datamodel.StaffEntry
 import luongvany.k12tt.model.datamodel.StaffEntryModel
 import org.joda.time.DateTime
@@ -40,3 +41,9 @@ fun StaffEntry.toStaffEntryModel(): StaffEntryModel{
     }
 }
 fun DepartmentEntryModel.toDepartmentEntry() = DepartmentEntry(this.id.value, this.departmentName.value, this.managerId.value ,this.directorateId.value)
+
+fun ObservableList<String>.addEle(string: String) = this.add(string)
+
+fun DepartmentEntryModel.coppy() = DepartmentEntryModel().apply {
+    item = this@coppy.toDepartmentEntry()
+}

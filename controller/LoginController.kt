@@ -3,8 +3,8 @@ package luongvany.k12tt.controller
 import luongvany.k12tt.app.ApplicationWorkspace
 import luongvany.k12tt.model.User
 import luongvany.k12tt.util.*
-import luongvany.k12tt.view.initview.ShowProgress
-import luongvany.k12tt.view.loginview.LoginView
+import luongvany.k12tt.view.initView.ShowProgress
+import luongvany.k12tt.view.loginView.LoginView
 import org.jetbrains.exposed.sql.Database
 import org.jetbrains.exposed.sql.transactions.TransactionManager
 import tornadofx.*

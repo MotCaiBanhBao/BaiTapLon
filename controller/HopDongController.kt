@@ -37,6 +37,7 @@ class HopDongController : Controller(){
     var items: ObservableList<HopDongEntryModel> by singleAssign()
 
     init {
+        idAndThoiGian.add("+Add new hợp đồng")
         listName = idAndThoiGian
         items = listOfItems
     }

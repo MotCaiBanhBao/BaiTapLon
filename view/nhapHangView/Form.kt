@@ -43,18 +43,16 @@ class Form(val model: NhapHangEntryModel): View("Nhập hàng form") {
             }
             field("Nhân viên nhập") {
                 combobox(staff) {
-                    staffController.listName.add("+Add new nhân viên")
                     items = staffController.listName
 
                     staff.onChange{
-                        if(it == "+Add new nhân viên")
+                        if(it == "+Add Nhân Viên")
                             addNhanVien.openModal(owner = null)
                     }
                 }
             }
             field("Mã hóa đơn") {
                 combobox(hoaDon) {
-                    hoaDonController.listName.add("+Add new hóa đơn")
                     items = hoaDonController.listName
 
                     hoaDon.onChange{
@@ -65,7 +63,6 @@ class Form(val model: NhapHangEntryModel): View("Nhập hàng form") {
             }
             field("Mã hàng hóa") {
                 combobox(hangHoa){
-                    hangHoaController.listName.add("+Add new hàng hóa")
                     items = hangHoaController.listName
                     hangHoa.onChange {
                         if(it == "+Add new hàng hóa"){
@@ -76,7 +73,6 @@ class Form(val model: NhapHangEntryModel): View("Nhập hàng form") {
             }
             field("Mã đối tác") {
                 combobox(doiTac){
-                    doiTacController.listName.add("+Add new đối tác")
                     items = doiTacController.listName
                     doiTac.onChange {
                         if(it == "+Add new đối tác"){

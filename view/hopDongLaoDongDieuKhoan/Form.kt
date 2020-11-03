@@ -21,18 +21,17 @@ class Form(val model: HDLD_DKEntryModel): View("HDLD_DK Form") {
     override val root = form {
         field("Mã hợp đồng lao động") {
             combobox(hopDongLaoDong) {
-                hopDongLaoDongController.listName.add("+Add new hợp đồng lao động")
                 items = hopDongLaoDongController.listName
 
                 hopDongLaoDong.onChange{
-                    if(it == "+Add new department")
+                    if(it == "+Add hợp đồng lao động")
                         addHDLD.openWindow()
                 }
             }
         }
         field("Điều khoản lao động") {
             combobox(dieuKhoanLaoDong){
-                dieuKhoanLaoDongController.listName.add("+Add new điều khoản lao động")
+
                 items = dieuKhoanLaoDongController.listName
                 dieuKhoanLaoDong.onChange {
                     if(it == "+Add new điều khoản lao động"){

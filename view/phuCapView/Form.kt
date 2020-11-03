@@ -7,12 +7,14 @@ import luongvany.k12tt.model.datamodel.PhuCapEntryModel
 import luongvany.k12tt.model.datamodel.StaffEntryModel
 import luongvany.k12tt.view.departmentView.adddepartment.AddDepartment
 import luongvany.k12tt.view.phuCapView.addPhuCapView.AddPhuCap
+import luongvany.k12tt.view.thanhVienHDQT.addThanhVien.AddThanhVienView
 import tornadofx.*
 
 class Form(val model: PhuCapEntryModel): View("Nhân viên form") {
     private val itemController: PhuCapController by inject()
     private val thanhVienHDQTController: ThanhVienHDQTController  by inject()
     var name = SimpleStringProperty(thanhVienHDQTController.listName[0])
+    private val addThanhVienHDQ: AddThanhVienView by inject()
 
     override val root = form {
         fieldset {
@@ -33,6 +35,11 @@ class Form(val model: PhuCapEntryModel): View("Nhân viên form") {
             field("Thành viên được hưởng") {
                 combobox(name){
                     items = thanhVienHDQTController.listName
+                    name.onChange {
+                        if(it == "+Add new thành viên"){
+                            addThanhVienHDQ.openModal(owner = null)
+                        }
+                    }
                 }
             }
             field("Thông tin phụ cấp") {

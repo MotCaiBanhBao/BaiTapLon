@@ -7,7 +7,6 @@ import tornadofx.*
 
 class Form(val model: ChucVuEntryModel): View("Chức vụ form") {
     private val itemController: ChucVuController by inject()
-    private val addChucVu: AddChucVu by inject()
 
     override val root = form {
         fieldset {

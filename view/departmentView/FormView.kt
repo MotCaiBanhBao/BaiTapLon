@@ -5,6 +5,7 @@ import luongvany.k12tt.controller.DepartmentController
 import luongvany.k12tt.controller.HDQTController
 import luongvany.k12tt.controller.StaffController
 import luongvany.k12tt.model.datamodel.DepartmentEntryModel
+import luongvany.k12tt.view.hoiDongQuanTriView.addHoiDongQT.AddHDQT
 import luongvany.k12tt.view.staffView.addStaffView.AddStaff
 import tornadofx.*
 
@@ -15,6 +16,7 @@ class FormView(var model: DepartmentEntryModel = DepartmentEntryModel()): View()
     private val hdqtController: HDQTController by inject()
     var name = SimpleStringProperty(staffController.listName[0])
     var hdqt = SimpleStringProperty(hdqtController.listName[0])
+    private val addHoiDongQuanTri: AddHDQT by inject()
     override val root = form {
         fieldset {
             field("Mã phòng ban") {
@@ -49,17 +51,20 @@ class FormView(var model: DepartmentEntryModel = DepartmentEntryModel()): View()
             field("Trực thuộc hội đồng") {
                 combobox<String>(hdqt) {
                     items = hdqtController.listName
+                    hdqt.onChange{
+                        if(it == "+Add hội đồng quản trị")
+                            addHoiDongQuanTri.openWindow(owner = null)
+                    }
                 }
             }
 
             field("Người đứng đầu") {
                 combobox<String>(name) {
-                    staffController.listName.add("+Add new department")
+                    items = staffController.listName
                     name.onChange{
-                        if(it == "+Add new department")
+                        if(it == "+Add Nhân Viên")
                             addStaff.openWindow()
                     }
-                    items = staffController.listName
                 }
             }
         }

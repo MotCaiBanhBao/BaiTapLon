@@ -1,4 +1,4 @@
-package luongvany.k12tt.view.khachHangView.staffTableView
+package luongvany.k12tt.view.khachHangView.khachHangTableView
 
 import tornadofx.*
 

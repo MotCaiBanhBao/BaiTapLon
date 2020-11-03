@@ -33,6 +33,7 @@ class ChucVuController: Controller(){
     var items: ObservableList<ChucVuEntryModel> by singleAssign()
 
     init {
+        idAndName.add("+Add chức vụ")
         listName = idAndName
         items = listOfItems
     }
@@ -54,7 +55,7 @@ class ChucVuController: Controller(){
             idAndName.add(if(idAndName.size==0) 0 else idAndName.size-1 ,toFormString(addItem.maChucVu, addItem.tenChucVu))
             information("Success")
         }catch (ex: Exception){
-            tornadofx.error(ex.stackTraceToString())
+            error(ex.stackTraceToString())
         }
 
     }
@@ -92,7 +93,7 @@ class ChucVuController: Controller(){
 
             information("Success")
         }catch (ex: Exception){
-            tornadofx.error(ex.stackTraceToString())
+            error(ex.stackTraceToString())
         }
     }
 

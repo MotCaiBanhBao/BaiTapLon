@@ -4,7 +4,6 @@ import luongvany.k12tt.controller.KhachHangController
 import luongvany.k12tt.model.datamodel.KhachHangEntryModel
 import luongvany.k12tt.util.toKhachHangEntry
 import luongvany.k12tt.view.khachHangView.Form
-import luongvany.k12tt.view.khachHangView.staffTableView.KhachHangView
 import tornadofx.*
 
 class AddKhachHang: View("Thêm nhân viên"){

@@ -2,7 +2,7 @@ package luongvany.k12tt.view.chucVuView.chuVuTableView
 
 import luongvany.k12tt.controller.ChucVuController
 import luongvany.k12tt.view.chucVuView.addChucVuView.AddChucVu
-import luongvany.k12tt.view.phuCapView.editTableView.*
+import luongvany.k12tt.view.chucVuView.editTableView.EditTable
 
 import tornadofx.*
 

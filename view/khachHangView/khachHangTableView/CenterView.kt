@@ -1,9 +1,7 @@
-package luongvany.k12tt.view.khachHangView.staffTableView
+package luongvany.k12tt.view.khachHangView.khachHangTableView
 
 import luongvany.k12tt.controller.KhachHangController
-import luongvany.k12tt.controller.StaffController
 import luongvany.k12tt.model.datamodel.KhachHangEntryModel
-import luongvany.k12tt.model.datamodel.StaffEntryModel
 import tornadofx.*
 import tornadofx.column
 

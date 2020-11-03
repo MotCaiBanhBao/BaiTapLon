@@ -6,7 +6,7 @@ import luongvany.k12tt.util.toHoiDongQTEntry
 import luongvany.k12tt.view.hoiDongQuanTriView.Form
 import tornadofx.*
 
-class ThemHDQT : View(){
+class AddHDQT : View(){
 
     private val model: HoiDongQuanTriEntryModel by inject()
     private val itemController: HDQTController by inject()

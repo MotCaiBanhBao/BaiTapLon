@@ -22,10 +22,10 @@ class Form(val model: HDGD_DKEntryModel): View("Hợp đồng giao dịch điề
         fieldset {
             field("Mã hợp đồng") {
                 combobox(hopDong) {
-                    hopDongController.listName.add("+Add hợp đồng")
+
                     items = hopDongController.listName
                     hopDong.onChange {
-                        if(it == "+Add hợp đồng"){
+                        if(it == "+Add new hợp đồng"){
                            addHopDong.openModal(owner = null)
                         }
                     }
@@ -34,7 +34,7 @@ class Form(val model: HDGD_DKEntryModel): View("Hợp đồng giao dịch điề
 
             field("Điều khoản") {
                 combobox(dieuKhoan){
-                    dieuKhoanController.listName.add("+Add điều khoản lao động")
+
                     items = dieuKhoanController.listName
                     dieuKhoan.onChange {
                         if(it == "+Add điều khoản lao động"){

@@ -31,6 +31,7 @@ class HangHoaController : Controller(){
     var items: ObservableList<HangHoaEntryModel> by singleAssign()
 
     init {
+        idAndName.add("+Add new hàng hóa")
         listName = idAndName
         items = listOfItems
     }

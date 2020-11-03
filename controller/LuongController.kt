@@ -32,6 +32,7 @@ class LuongController: Controller(){
     var items: ObservableList<LuongEntryModel> by singleAssign()
 
     init {
+        listMaLuong.add("+Add new mã lương")
         items = listOfItems
         listMaLuong = listOfMaLuong
     }

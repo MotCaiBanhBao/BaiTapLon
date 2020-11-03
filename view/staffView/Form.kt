@@ -7,6 +7,7 @@ import luongvany.k12tt.controller.StaffController
 import luongvany.k12tt.model.Sex
 import luongvany.k12tt.model.datamodel.StaffEntryModel
 import luongvany.k12tt.view.departmentView.adddepartment.AddDepartment
+import luongvany.k12tt.view.luongView.addLuongView.AddLuong
 import tornadofx.*
 
 class Form(val model: StaffEntryModel): View("Nhân viên form") {
@@ -16,6 +17,7 @@ class Form(val model: StaffEntryModel): View("Nhân viên form") {
     private val luongController: LuongController by inject()
     val maLuong = SimpleStringProperty(luongController.listMaLuong[0])
     private val addDepartment: AddDepartment by inject()
+    private val addLuong: AddLuong by inject()
 
     override val root = form {
         fieldset {
@@ -77,7 +79,6 @@ class Form(val model: StaffEntryModel): View("Nhân viên form") {
             }
             field("Mã phòng ban") {
                 combobox(name) {
-                    departmentController.listName.add("+Add new department")
                     items = departmentController.listName
 
                     name.onChange{
@@ -88,13 +89,13 @@ class Form(val model: StaffEntryModel): View("Nhân viên form") {
             }
             field("Mã Lương") {
                 combobox(maLuong){
-                    luongController.listMaLuong.add("test")
+
                     items = luongController.listMaLuong
-//                    maLuong.onChange {
-//                        if(it == "test"){
-//                            find(AddStaff::class).openModal(owner = null)
-//                        }
-//                    }
+                    maLuong.onChange {
+                        if(it == "+Add new mã lương"){
+                            addLuong.openModal(owner = null)
+                        }
+                    }
                 }
             }
             field("Hình Ảnh") {

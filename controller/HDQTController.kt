@@ -29,6 +29,7 @@ class HDQTController : Controller(){
     var items: ObservableList<HoiDongQuanTriEntryModel> by singleAssign()
 
     init {
+        idAndNhiemKy.add("+Add hội đồng quản trị")
         listName = idAndNhiemKy
         items = listOfItems
     }
@@ -92,7 +93,7 @@ class HDQTController : Controller(){
         }
     }
     fun toLocalDate(content: String): Pair<LocalDate, LocalDate>{
-        var index = content.indexOf("đến")
+        val index = content.indexOf("đến")
         val string1 = content.substring(2, index).trim()
         val string2 = content.substring(index+3, content.length).trim()
 

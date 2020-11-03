@@ -34,6 +34,7 @@ class StaffController: Controller(){
     var items: ObservableList<StaffEntryModel> by singleAssign()
 
     init {
+        idAndName.add("+Add Nhân Viên")
         listName = idAndName
         items = listOfItems
     }

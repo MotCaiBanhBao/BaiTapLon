@@ -1,12 +1,12 @@
 package luongvany.k12tt.view.hoiDongQuanTriView.hoiDongQuanTriTableView
 
 import luongvany.k12tt.controller.HDQTController
-import luongvany.k12tt.view.hoiDongQuanTriView.addHoiDongQT.ThemHDQT
+import luongvany.k12tt.view.hoiDongQuanTriView.addHoiDongQT.AddHDQT
 import luongvany.k12tt.view.hoiDongQuanTriView.editView.EditTable
 import tornadofx.*
 
 class BottomView : View("My View") {
-    private val themHDQT: ThemHDQT by inject()
+    private val themHDQT: AddHDQT by inject()
     private val centerView: CenterView by inject()
     private var selectedItem = centerView.mTableView.tableView.selectedItem
     private val hdqtController: HDQTController by inject()

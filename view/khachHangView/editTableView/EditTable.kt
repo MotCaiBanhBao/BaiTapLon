@@ -4,7 +4,7 @@ import luongvany.k12tt.controller.KhachHangController
 import luongvany.k12tt.util.coppy
 import luongvany.k12tt.util.toKhachHangEntry
 import luongvany.k12tt.view.khachHangView.Form
-import luongvany.k12tt.view.khachHangView.staffTableView.CenterView
+import luongvany.k12tt.view.khachHangView.khachHangTableView.CenterView
 import tornadofx.*
 
 class EditTable: View("My View") {

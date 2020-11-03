@@ -25,7 +25,7 @@ fun createTables(){
         SchemaUtils.create(StaffEntryTbl, DepartmentEntryTbl, ChucVuEntryTbl,
                 DamNhiemEntryTbl, DieuKhoanEntryTbl, DieuKhoanLaoDongEntryTbl,
                 DoiTacEntryTbl, GioiThieuEntryTbl, HangHoaEntryTbl,
-                HDDD_DKEntryTbl, HoaDonEntryTbl, HoiDongQuanTriEntryTbl,
+                HDGD_DKEntryTbl, HoaDonEntryTbl, HoiDongQuanTriEntryTbl,
                 HopDongEntryTbl, KhachHangEntryTbl, LuongEntryTbl, NhapHangEntryTbl,
                 PhuCapEntryTbl, ThanhVienHDQTEntryTbl)
     }

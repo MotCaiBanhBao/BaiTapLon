@@ -2,8 +2,11 @@ package luongvany.k12tt.model.datamodel
 
 import javafx.beans.property.SimpleIntegerProperty
 import javafx.beans.property.SimpleStringProperty
+import org.jetbrains.exposed.sql.ResultRow
 import org.jetbrains.exposed.sql.Table
 import tornadofx.*
+
+fun ResultRow.toHDQTEntry() = HoiDongQuanTriEntry(this[HoiDongQuanTriEntryTbl.maHoiDongQuanTri], this[HoiDongQuanTriEntryTbl.nhiemKy])
 
 object HoiDongQuanTriEntryTbl : Table(){
     val maHoiDongQuanTri = integer("Hội đồng quản trị").primaryKey()

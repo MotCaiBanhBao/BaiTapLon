@@ -2,8 +2,13 @@ package luongvany.k12tt.model.datamodel
 
 import javafx.beans.property.SimpleIntegerProperty
 import javafx.beans.property.SimpleStringProperty
+import org.jetbrains.exposed.sql.ResultRow
 import org.jetbrains.exposed.sql.Table
 import tornadofx.*
+
+fun ResultRow.toKhachHangEntry() = KhachHangEntry(this[KhachHangEntryTbl.maKhachHang],
+        this[KhachHangEntryTbl.diaChi], this[KhachHangEntryTbl.tenKhachHang], this[KhachHangEntryTbl.soThich],
+        this[KhachHangEntryTbl.soDienThoai])
 
 object KhachHangEntryTbl: Table(){
     val maKhachHang = integer("Mã khách hàng").primaryKey()

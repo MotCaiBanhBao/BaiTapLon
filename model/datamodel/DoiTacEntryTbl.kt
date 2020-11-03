@@ -2,8 +2,11 @@ package luongvany.k12tt.model.datamodel
 
 import javafx.beans.property.SimpleIntegerProperty
 import javafx.beans.property.SimpleStringProperty
+import org.jetbrains.exposed.sql.ResultRow
 import org.jetbrains.exposed.sql.Table
 import tornadofx.*
+
+fun ResultRow.toDoiTacEntry() = this[DoiTacEntryTbl.tenDoiTac]?.let { this[DoiTacEntryTbl.diaChi]?.let { it1 -> DoiTacEntry(this[DoiTacEntryTbl.maDoiTac], it, it1) } }
 
 object DoiTacEntryTbl: Table(){
     val maDoiTac = integer("Mã đối tác").primaryKey()

@@ -24,6 +24,7 @@ fun ResultRow.toStaffEntry() = this[StaffEntryTbl.departmentId]?.let {
     )
 }
 
+
 object StaffEntryTbl: Table(){
     val id = integer("id").primaryKey()
     val name = varchar("name", 30)

@@ -7,7 +7,7 @@ import luongvany.k12tt.model.datamodel.*
 import luongvany.k12tt.util.enableConsoleLogger
 import luongvany.k12tt.util.execute
 import luongvany.k12tt.util.toDate
-import luongvany.k12tt.view.staffview.stafftableview.RightView
+import luongvany.k12tt.view.staffView.staffTableView.RightView
 import org.jetbrains.exposed.sql.*
 import tornadofx.*
 import java.lang.Exception
@@ -23,6 +23,7 @@ class StaffController: Controller(){
             }
         }.asObservable()
     }
+
     private val idAndName = execute {
         StaffEntryTbl.slice(StaffEntryTbl.name, StaffEntryTbl.id).selectAll().map {
             toFormString(it[StaffEntryTbl.id], it[StaffEntryTbl.name])
@@ -65,7 +66,7 @@ class StaffController: Controller(){
                         item = addItem
                     }
             )
-            idAndName.add(idAndName.size-1 ,toFormString(addItem.id, addItem.name))
+            idAndName.add(if(idAndName.size==0) 0 else idAndName.size-1 ,toFormString(addItem.id, addItem.name))
             information("Success")
         }catch (ex: Exception){
             error(ex.stackTraceToString())

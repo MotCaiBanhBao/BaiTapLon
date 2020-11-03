@@ -1,15 +1,11 @@
 package luongvany.k12tt.controller
 
-import javafx.beans.property.SimpleStringProperty
 import javafx.collections.ObservableList
-import javafx.geometry.Pos
 import javafx.scene.text.FontWeight
 import luongvany.k12tt.model.datamodel.*
 import luongvany.k12tt.util.enableConsoleLogger
 import luongvany.k12tt.util.execute
-import luongvany.k12tt.util.toDate
-import luongvany.k12tt.view.departmentview.departmenttableview.RightView
-import org.jetbrains.exposed.sql.SqlExpressionBuilder.eq
+import luongvany.k12tt.view.departmentView.departmenttableview.RightView
 import org.jetbrains.exposed.sql.deleteWhere
 import org.jetbrains.exposed.sql.insert
 import org.jetbrains.exposed.sql.selectAll
@@ -70,7 +66,7 @@ class DepartmentController: Controller(){
                     item = departmentEntry
                 }
         )
-        idAndName.add(idAndName.size-1, toFormString(departmentEntry.id, departmentEntry.departmentName))
+        idAndName.add(if(idAndName.size==0) 0 else idAndName.size-1, toFormString(departmentEntry.id, departmentEntry.departmentName))
     }
 
     fun edit(content: DepartmentEntry, indexItem: DepartmentEntryModel){

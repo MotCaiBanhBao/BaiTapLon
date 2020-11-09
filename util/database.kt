@@ -1,48 +1,29 @@
 package luongvany.k12tt.util
 
-import luongvany.k12tt.model.datamodel.*
-import org.jetbrains.exposed.sql.SchemaUtils
-import org.jetbrains.exposed.sql.StdOutSqlLogger
-import org.jetbrains.exposed.sql.Transaction
-import org.jetbrains.exposed.sql.addLogger
+import luongvany.k12tt.model.CurrentDatabase
+import org.jetbrains.exposed.sql.*
 import org.jetbrains.exposed.sql.transactions.TransactionManager
+import org.jetbrains.exposed.sql.transactions.transaction
 import java.sql.Connection
 
 private var LOG_TO_CONSOLE: Boolean = false
-
-//Thêm phần hiển thị câu lệnh trên cmd
-fun newTransaction(): Transaction = TransactionManager.currentOrNew(Connection.TRANSACTION_SERIALIZABLE).apply {
-    if(LOG_TO_CONSOLE) addLogger(StdOutSqlLogger)
-}
 
 fun enableConsoleLogger(){
     LOG_TO_CONSOLE = true
 }
 
-fun createTables(){
-    enableConsoleLogger()
-    execute {
-        SchemaUtils.create(StaffEntryTbl, DepartmentEntryTbl, ChucVuEntryTbl,
-                DamNhiemEntryTbl, DieuKhoanEntryTbl, DieuKhoanLaoDongEntryTbl,
-                DoiTacEntryTbl, GioiThieuEntryTbl, HangHoaEntryTbl,
-                HDGD_DKEntryTbl, HoaDonEntryTbl, HoiDongQuanTriEntryTbl,
-                HopDongEntryTbl, KhachHangEntryTbl, LuongEntryTbl, NhapHangEntryTbl,
-                PhuCapEntryTbl, ThanhVienHDQTEntryTbl)
-    }
-}
-// Môi trường thực hiện các lệnh command sql
 fun <T> execute(command: () -> T): T{
-    with(newTransaction()){
-        return command().apply {
+    return transaction(CurrentDatabase.currentConnect){
+        command().apply {
             commit()
-            close()
         }
     }
 }
+
 fun isInit(): Boolean{
     try {
         execute {
-            TransactionManager.current().exec("use test;")
+            TransactionManager.current().exec("use ${CurrentDatabase.User.databaseName};")
         }
     }catch (ex: Exception){
         return false
@@ -52,6 +33,7 @@ fun isInit(): Boolean{
 
 fun isConnected(): Boolean{
     try {
+        createConnect("")
         execute {
             TransactionManager.current().exec("Show databases;")
         }
@@ -59,4 +41,19 @@ fun isConnected(): Boolean{
         return false
     }
     return true
+}
+
+fun createConnect(nameOfDatabase: String) {
+    CurrentDatabase.currentConnect = Database.connect(CurrentDatabase.createDataSrc(nameOfDatabase))
+    TransactionManager.manager.newTransaction(Connection.TRANSACTION_SERIALIZABLE)
+}
+
+fun disconnectCurrentDbs(){
+    transaction {
+        close()
+    }
+}
+
+fun createDatabase(nameOfDatabase: String){
+    TransactionManager.currentOrNew(Connection.TRANSACTION_SERIALIZABLE).exec("create database ${nameOfDatabase};")
 }

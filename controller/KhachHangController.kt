@@ -31,6 +31,7 @@ class KhachHangController : Controller(){
     var items: ObservableList<KhachHangEntryModel> by singleAssign()
 
     init {
+        idAndName.add(" ")
         idAndName.add("+Add new Khách hàng")
         listName = idAndName
         items = listOfItems

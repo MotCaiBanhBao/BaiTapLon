@@ -4,7 +4,6 @@ import javafx.beans.property.SimpleStringProperty
 import luongvany.k12tt.model.datamodel.*
 import org.jetbrains.exposed.sql.Table
 import tornadofx.Controller
-import java.util.*
 
 class MainController: Controller(){
     val listOfObject = listOf<Table>(StaffEntryTbl, DepartmentEntryTbl, ChucVuEntryTbl,

@@ -29,6 +29,7 @@ class HDQTController : Controller(){
     var items: ObservableList<HoiDongQuanTriEntryModel> by singleAssign()
 
     init {
+        idAndNhiemKy.add(" ")
         idAndNhiemKy.add("+Add hội đồng quản trị")
         listName = idAndNhiemKy
         items = listOfItems

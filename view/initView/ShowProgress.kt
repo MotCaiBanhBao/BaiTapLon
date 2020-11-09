@@ -2,36 +2,38 @@ package luongvany.k12tt.view.initView
 
 import javafx.application.Platform
 import luongvany.k12tt.app.ApplicationWorkspace
+import luongvany.k12tt.controller.LoadingController
 import luongvany.k12tt.controller.LoginController
 import luongvany.k12tt.controller.MainController
+import luongvany.k12tt.style.InitStyle.Companion.progressBarStyle
 import luongvany.k12tt.util.enableConsoleLogger
-import luongvany.k12tt.util.newTransaction
 import org.jetbrains.exposed.sql.SchemaUtils
 import org.jetbrains.exposed.sql.transactions.TransactionManager
 import tornadofx.*
 import kotlin.concurrent.thread
 
 class ShowProgress : View("Init application") {
-    private val controller: LoginController by inject()
-    private val mainController: MainController by inject()
-    override val root = vbox {
-        enableConsoleLogger()
+    private val loadingController: LoadingController by inject()
+    override fun onDock() {
+        currentStage?.height = 700.0
+        currentStage?.width = 751.0
+        currentStage?.centerOnScreen()
+        loadingController.create(currentWindow)
+    }
 
-        progressbar() {
-            thread {
-                with(newTransaction()) {
-                    exec("create database test;")
-                    exec("use test;")
-                    mainController.listOfObject.forEach{
-                        SchemaUtils.create(it)
-                    }
+    private val status: TaskStatus by inject()
+    override val root = borderpane() {
+        center = imageview("BackgroundLoading.png")
 
-                }
-                Thread.currentThread().interrupt()
-                Platform.runLater{
-                    close()
-                    TransactionManager.closeAndUnregister(controller.connect!!)
-                    find(ApplicationWorkspace::class).openModal()
+        bottom = borderpane{
+
+            top = label(status.message)
+            center = progressbar(status.progress) {
+                style{
+                    progressBarStyle
+                    prefHeight = 20.px
+                    prefWidth = 751.px
+                    accentColor = c("red")
                 }
             }
         }

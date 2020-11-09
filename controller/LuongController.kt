@@ -32,9 +32,11 @@ class LuongController: Controller(){
     var items: ObservableList<LuongEntryModel> by singleAssign()
 
     init {
-        listMaLuong.add("+Add new mã lương")
-        items = listOfItems
+        listOfMaLuong.add(" ")
+        listOfMaLuong.add("+Add new mã lương")
         listMaLuong = listOfMaLuong
+        items = listOfItems
+
     }
 
     fun convertToId(string: String): Int{

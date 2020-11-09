@@ -32,6 +32,7 @@ class DoiTacController : Controller(){
     var items: ObservableList<DoiTacEntryModel> by singleAssign()
 
     init {
+        idAndName.add(" ")
         idAndName.add("+Add new đối tác")
         listName = idAndName
         items = listOfItems

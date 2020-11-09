@@ -32,6 +32,7 @@ class DieuKhoanController : Controller(){
     var items: ObservableList<DieuKhoanEntryModel> by singleAssign()
 
     init {
+        idAndName.add(" ")
         idAndName.add("+Add điều khoản lao động")
         listName = idAndName
         items = listOfItems

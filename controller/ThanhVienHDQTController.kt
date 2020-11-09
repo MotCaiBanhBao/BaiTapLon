@@ -30,6 +30,7 @@ class ThanhVienHDQTController : Controller(){
     var items: ObservableList<ThanhVienHDQTEntryModel> by singleAssign()
 
     init {
+        idAndName.add(" ")
         idAndName.add("+Add new thành viên")
         listName = idAndName
         items = listOfItems

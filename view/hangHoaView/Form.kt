@@ -9,6 +9,7 @@ class Form(val model: HangHoaEntryModel): View("Hàng hóa form") {
     private val itemController: HangHoaController by inject()
 
     override val root = form {
+
         fieldset {
             field("Mã hàng hóa") {
                 textfield(model.maHangHoa) {

@@ -1,16 +1,19 @@
 package luongvany.k12tt.app
 
 import javafx.stage.Stage
-import luongvany.k12tt.style.Style
-import luongvany.k12tt.view.chucVuView.chuVuTableView.ChucVuView
-import luongvany.k12tt.view.damNhiemView.damNhiemTableView.DamNhiemView
+import luongvany.k12tt.style.LoginStyle
+import luongvany.k12tt.view.initView.ShowProgress
+import luongvany.k12tt.view.loginView.LoginView
+import luongvany.k12tt.view.staffView.staffTableView.StaffView
 import org.jetbrains.exposed.sql.Database
 import tornadofx.App
+import tornadofx.reloadStylesheetsOnFocus
+import tornadofx.reloadViewsOnFocus
 
-class Test: App(DamNhiemView::class, Style::class){
-    override fun start(stage: Stage) {
-        Database.connect("jdbc:mysql://localhost:3306/test", driver = "com.mysql.jdbc.Driver",
-                user = "admin", password = "Admin_Password_121")
+class Test: App(LoginView::class, LoginStyle::class){
+
+        override fun start(stage: Stage) {
         super.start(stage)
     }
+
 }

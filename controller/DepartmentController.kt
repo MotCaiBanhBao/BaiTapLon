@@ -33,6 +33,7 @@ class DepartmentController: Controller(){
     var items: ObservableList<DepartmentEntryModel> by singleAssign()
 
     init {
+        idAndName.add(" ")
         idAndName.add("+Add new department")
         listName = idAndName
         items = listOfItems

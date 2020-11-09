@@ -12,15 +12,15 @@ class AddHangHoa: View("Thêm hàng hóa"){
     private val formView = Form(model)
 
     override val root = borderpane(){
-            center = formView.root
-            bottom = button("Save"){
-                enableWhen(model.valid)
-                action{
-                    model.commit{
-                        itemController.add(model.toHangHoaEntry())
-                        model.rollback()
-                    }
+        center = formView.root
+        bottom = button("Save"){
+            enableWhen(model.valid)
+            action{
+                model.commit{
+                    itemController.add(model.toHangHoaEntry())
+                    model.rollback()
                 }
             }
         }
     }
+}

@@ -2,35 +2,40 @@ package luongvany.k12tt.view.loginView
 
 import javafx.geometry.Orientation
 import javafx.scene.control.ProgressIndicator
+import javafx.scene.image.Image
 import luongvany.k12tt.controller.LoginController
-import luongvany.k12tt.model.User
-import luongvany.k12tt.style.Style.Companion.login
+import luongvany.k12tt.model.CurrentDatabase
+import luongvany.k12tt.style.LoginStyle.Companion.login
 import tornadofx.*
 
-class LoginView : View("My View") {
-
-    private val controller: LoginController by inject()
-
+class LoginView : View("Login view") {
     override fun onDock() {
-        currentWindow?.width = 300.0
-        currentWindow?.height = 300.0
+        currentStage?.isResizable = false
     }
+    private val controller: LoginController by inject()
+    override val root = borderpane(){
 
-    override val root = form {
-        addClass(login)
-        fieldset {
-            labelPosition = Orientation.VERTICAL
-            field("Tên đăng nhập") {
-                textfield(User.userName)
-            }
-            field("Mật khẩu") {
-                passwordfield(User.password)
-            }
+        left = imageview(){
+            image = Image("LoginBackground.png")
         }
-        button("Login"){
-            action{
-                graphic = ProgressIndicator()
-                controller.login()
+
+        center = form {
+            addClass(login)
+            fieldset {
+                labelPosition = Orientation.VERTICAL
+                field("Tên đăng nhập") {
+                    textfield(CurrentDatabase.User.userName)
+                }
+                field("Mật khẩu") {
+                    passwordfield(CurrentDatabase.User.password)
+                }
+            }
+            button("Login"){
+                shortcut("enter")
+                action{
+                    graphic = ProgressIndicator()
+                    controller.login()
+                }
             }
         }
     }

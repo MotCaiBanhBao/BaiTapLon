@@ -34,6 +34,7 @@ class HoaDonController : Controller(){
     var items: ObservableList<HoaDonEntryModel> by singleAssign()
 
     init {
+        idAndName.add(" ")
         idAndName.add("+Add new hóa đơn")
         listName = idAndName
         items = listOfItems

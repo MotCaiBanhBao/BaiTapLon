@@ -33,6 +33,7 @@ class ChucVuController: Controller(){
     var items: ObservableList<ChucVuEntryModel> by singleAssign()
 
     init {
+        idAndName.add(" ")
         idAndName.add("+Add chức vụ")
         listName = idAndName
         items = listOfItems

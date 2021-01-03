@@ -4,9 +4,17 @@ import tornadofx.*
 
 class HomeStyle : Stylesheet(){
     companion object{
-        val leftView by cssclass()
+        val navBar by cssclass()
+        val labelTop by cssclass()
         val centerView by cssclass()
+
+        val paddingValue = 10.px
+        val color = c("#1e88cf")
+         val defaultPadding = 0.px
     }
+    init {
+        navBar{
 
-
+        }
+    }
 }

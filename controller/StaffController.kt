@@ -127,5 +127,6 @@ class StaffController: Controller(){
         }
     }
 
+
     private fun toFormString(content1: Int, content2: String) = """ID: ${content1}, Tên: $content2"""
 }

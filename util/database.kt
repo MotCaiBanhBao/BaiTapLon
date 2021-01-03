@@ -46,6 +46,7 @@ fun isConnected(): Boolean{
 fun createConnect(nameOfDatabase: String) {
     CurrentDatabase.currentConnect = Database.connect(CurrentDatabase.createDataSrc(nameOfDatabase))
     TransactionManager.manager.newTransaction(Connection.TRANSACTION_SERIALIZABLE)
+    enableConsoleLogger()
 }
 
 fun disconnectCurrentDbs(){

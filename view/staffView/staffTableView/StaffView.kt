@@ -15,6 +15,7 @@ class StaffView: View("Bảng nhân viên"){
     }
 
     override val root = borderpane(){
+
         center = centerView.root
         right = rightView.root
         bottom = bottomView.root

@@ -1,10 +1,13 @@
 package luongvany.k12tt.util
 
 import javafx.collections.ObservableList
+import javafx.scene.image.Image
+import javafx.scene.shape.Circle
 import org.joda.time.DateTime
 import java.time.LocalDate
 import luongvany.k12tt.model.Sex
 import luongvany.k12tt.model.datamodel.*
+import javax.swing.text.html.ImageView
 
 fun DateTime.toJavaLocalDate(): LocalDate{
     return LocalDate.of(this.year, this.monthOfYear, this.dayOfMonth)
@@ -150,3 +153,18 @@ fun GioiThieuEntryModel.coppy() = GioiThieuEntryModel().apply {
     item = this@coppy.toGioiThieuEntry()
 }
 fun ObservableList<String>.addEle(string: String) = this.add(string)
+
+fun StaffEntryModel.showThumbnail() = CircleImage("/${this.img.value}", 40.0)
+
+class CircleImage(url: String, size: Double): javafx.scene.image.ImageView(){
+    init {
+        fitWidth = size
+        isPreserveRatio = true
+        isSmooth = true
+        isCache = true
+
+        this.image = Image(url)
+        val glass = Circle(size/2, size/2, size/2)
+        clip = glass
+    }
+}

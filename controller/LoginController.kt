@@ -4,6 +4,7 @@ import javafx.stage.StageStyle
 import luongvany.k12tt.app.ApplicationWorkspace
 import luongvany.k12tt.model.CurrentDatabase
 import luongvany.k12tt.util.*
+import luongvany.k12tt.view.homeUI.HomeUi
 import luongvany.k12tt.view.initView.ShowProgress
 import luongvany.k12tt.view.loginView.LoginView
 import org.jetbrains.exposed.sql.Database
@@ -11,11 +12,10 @@ import tornadofx.*
 
 class LoginController : Controller(){
 
-    val loginView: LoginView by inject()
+    private val loginView: LoginView by inject()
     val mainController: MainController by inject()
-    private val applicationWorkspace: ApplicationWorkspace by inject()
-    var connect: Database? = null
     private val showProgress: ShowProgress by inject()
+    private val homeUi: HomeUi by inject()
     fun login(){
         if (isConnected()){
             if(!isInit()){
@@ -28,8 +28,9 @@ class LoginController : Controller(){
             else{
                 disconnectCurrentDbs()
                 information("Chào mừng đã trở lại chương trình")
-                loginView.close()
-                applicationWorkspace.openWindow()
+                createConnect("hallo")
+                loginView.currentStage?.close()
+                showProgress.openWindow(StageStyle.UNDECORATED)
             }
         }
         else{

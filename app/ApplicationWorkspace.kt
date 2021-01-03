@@ -24,50 +24,50 @@ class ApplicationWorkspace : Workspace("Application", NavigationMode.Tabs) {
     }
     init {
         //Db
-        createConnect("hallo")
-        disconnectCurrentDbs()
-        createConnect("hallo")
-        enableConsoleLogger()
-        StaffController()
+//        createConnect("hallo")
+//        disconnectCurrentDbs()
+//        createConnect("hallo")
+//        enableConsoleLogger()
+//        StaffController()
 
-        execute {
-            LuongEntryTbl.insert {
-                it[maLuong] = 1
-                it[bacLuong] = "2"
-                it[luongCoBan] = 10000
-                it[heSoLuong] = "1,2"
-            }
-            StaffEntryTbl.insert {
-                it[id] = 1
-                it[name] = "Nguyễn Văn A"
-                it[sex] = "NAM"
-                it[homeTown] = "Viet nam"
-                it[birthDay] = DateTime.now()
-                it[departmentId] = null
-                it[salaryId] = 1
-                it[img] = "person-male.png"
-            }
-            HoiDongQuanTriEntryTbl.insert {
-                it[maHoiDongQuanTri] = 1
-                it[nhiemKy] = "4 nam"
-            }
-            DepartmentEntryTbl.insert {
-                it[departmentId] = 1
-                it[departmentName] = "Nhân Sự"
-                it[managerId] = 1
-                it[directorateId] = 1
-            }
-            StaffEntryTbl.update ({
-                StaffEntryTbl.id eq 1
-            }){
-                it[departmentId] = 1
-            }
-        }
+//        execute {
+//            LuongEntryTbl.insert {
+//                it[maLuong] = 1
+//                it[bacLuong] = "2"
+//                it[luongCoBan] = 10000
+//                it[heSoLuong] = "1,2"
+//            }
+//            StaffEntryTbl.insert {
+//                it[id] = 1
+//                it[name] = "Nguyễn Văn A"
+//                it[sex] = "NAM"
+//                it[homeTown] = "Viet nam"
+//                it[birthDay] = DateTime.now()
+//                it[departmentId] = null
+//                it[salaryId] = 1
+//                it[img] = "person-male.png"
+//            }
+//            HoiDongQuanTriEntryTbl.insert {
+//                it[maHoiDongQuanTri] = 1
+//                it[nhiemKy] = "4 nam"
+//            }
+//            DepartmentEntryTbl.insert {
+//                it[departmentId] = 1
+//                it[departmentName] = "Nhân Sự"
+//                it[managerId] = 1
+//                it[directorateId] = 1
+//            }
+//            StaffEntryTbl.update ({
+//                StaffEntryTbl.id eq 1
+//            }){
+//                it[departmentId] = 1
+//            }
+//        }
 
         //Controller
 
         //dock our view
-        dock<StaffView>()
+//        dock<StaffView>()
 
         tabContainer.tabClosingPolicy = TabPane.TabClosingPolicy.UNAVAILABLE
 

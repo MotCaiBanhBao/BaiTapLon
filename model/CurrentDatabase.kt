@@ -11,9 +11,9 @@ object CurrentDatabase{
         const val driver = "com.mysql.cj.jdbc.Driver"
         const val url = "jdbc:mysql://localhost/"
         var databaseName = "hallo"
-        var userName = SimpleStringProperty()
+        var userName = SimpleStringProperty("admin")
             get() = field.value?.let { SimpleStringProperty(it.trim()) }?:field
-        var password = SimpleStringProperty()
+        var password = SimpleStringProperty("Admin_Password_121")
     }
     fun createDataSrc(nameOfDatabase: String) = HikariDataSource(HikariConfig().apply {
         jdbcUrl = "${User.url}${nameOfDatabase}"
